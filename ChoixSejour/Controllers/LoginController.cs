@@ -26,7 +26,7 @@ namespace ChoixSejour.Controllers
             UtilisateurViewModel viewModel = new UtilisateurViewModel { Authentifie = HttpContext.User.Identity.IsAuthenticated };
             if (HttpContext.User.Identity.IsAuthenticated)
             {
-                var userId = User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
+                var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
                 viewModel.Utilisateur = dal.ObtenirUtilisateur(userId);
                 return Redirect("/home/index");
             }

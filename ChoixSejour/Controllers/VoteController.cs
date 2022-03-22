@@ -24,7 +24,7 @@ namespace ChoixSejour.Controllers
         {
             SejourVoteViewModel viewModel = new SejourVoteViewModel
             {
-                ListeDesSejours = dal.ObtientTousLesSejours().Select(r => new SejourCheckBoxViewModel { Id = r.Id, LieuEtTelephone = string.Format("{0} ({1})", r.Lieu, r.Telephone) }).ToList()
+                ListeDesSejours = dal.ObtientTousLesSejours().Select(r => new SejourCheckBoxViewModel { Id = r.Id, NomEtTelephone = string.Format("{0} ({1})", r.Lieu, r.Telephone) }).ToList()
             };
             var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
             if (dal.ADejaVote(id, userId))
@@ -39,7 +39,7 @@ namespace ChoixSejour.Controllers
         {
             if (!ModelState.IsValid)
                 return View(viewModel);
-            var userId = User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
             Utilisateur utilisateur = dal.ObtenirUtilisateur(userId);
             if (utilisateur == null)
@@ -53,7 +53,7 @@ namespace ChoixSejour.Controllers
 
         public ActionResult AfficheResultat(int id)
         {
-           var userId = User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
+           var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
             if (!dal.ADejaVote(id, userId))
             {
                 return RedirectToAction("Index", new { id = id });
