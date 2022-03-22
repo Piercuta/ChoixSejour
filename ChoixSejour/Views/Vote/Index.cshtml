@@ -21,9 +21,9 @@
                     {
                         <div class="form-check m-3">
                             @Html.CheckBoxFor(m => m.ListeDesSejours[i].EstSelectionne, new {@class="form-check-input", data_val = "true", data_val_verifListe = "Vous devez choisir au moins un sejour" })
-                            @Html.LabelFor(m => m.ListeDesSejours[i].EstSelectionne, Model.ListeDesSejours[i].NomEtTelephone, new { @class = "form-check-label" })
+                            @Html.LabelFor(m => m.ListeDesSejours[i].EstSelectionne, Model.ListeDesSejours[i].LieuEtTelephone, new { @class = "form-check-label" })
                             @Html.HiddenFor(m => m.ListeDesSejours[i].Id)
-                            @Html.HiddenFor(m => m.ListeDesSejours[i].NomEtTelephone)
+                            @Html.HiddenFor(m => m.ListeDesSejours[i].LieuEtTelephone)
                         </div>
                     }
                     <button class="btn btn-primary" type="submit">Valider</button>
