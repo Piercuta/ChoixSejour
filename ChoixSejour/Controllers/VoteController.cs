@@ -6,6 +6,7 @@ using System.Security.Principal;
 using System.Threading.Tasks;
 using ChoixSejour.Models;
 using ChoixSejour.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -61,6 +62,7 @@ namespace ChoixSejour.Controllers
             return View(resultats.OrderByDescending(r => r.NombreDeVotes).ToList());
         }
 
+        [Authorize (Roles = "Admin")]
         public ActionResult CreateSondage()
         {
             int idSondage = dal.CreerUnSondage();

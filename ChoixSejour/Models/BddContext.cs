@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.IdentityModel.Protocols;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Http;
 
 namespace ChoixSejour.Models
 {
@@ -58,43 +59,30 @@ namespace ChoixSejour.Models
                 new Sejour
                 {
                     Id = 1,
-                    Lieu = "Au Cellier",
-                    Telephone = "0299972050",
-                    Ville = "Fougères",
-                    Description = "bla bla bla" 
+                    Lieu = "Center Parcs",
+                    Telephone = "0232605200",
+                    Ville = "Les Barils",
+                    ImagePath= "/images/center-parcs.png",
+                    Description = "A seulement 1H30 de Paris, évadez-vous de la ville et venez profiter du charme de la campagne Normande. Logez en famille dans des cottages rénovés ou Pagodes VIP. En couple, installez-vous à l'Hotel La Maison du Lac."
                 },
                 new Sejour
                 {
                     Id = 2,
-                    Lieu = "L'Eveil des sens",
-                    Telephone = "0243304217",
-                    Ville = "Mayenne",
-                    Description = "bla bla bla"
+                    Lieu = "Guédelon",
+                    Telephone = "0386456666",
+                    Ville = "Treigny",
+                    ImagePath = "/images/guedelon.jpg",
+                    Description = "Au cœur de la Puisaye, dans l’Yonne, en Bourgogne, une quarantaine d’œuvriers relèvent un défi hors-norme : construire aujourd’hui un château fort selon les techniques et avec les matériaux utilisés au Moyen Âge."
                 },
                 new Sejour
                 {
                     Id = 3,
-                    Lieu = "Le Carré",
-                    Telephone = "0223402121",
-                    Ville = "Rennes",
-                    Description = "bla bla bla"
-                },
-                 new Sejour
-                 {
-                     Id = 4,
-                     Lieu = "Le Carré",
-                     Telephone = "0223402121",
-                     Ville = "Rennes",
-                     Description = "bla bla bla"
-                 },
-                 new Sejour
-                 {
-                     Id = 5,
-                     Lieu = "Le Carré",
-                     Telephone = "0223402121",
-                     Ville = "Rennes",
-                     Description = "bla bla bla"
-                 }
+                    Lieu = "Parc Astérix",
+                    Telephone = "0986868687",
+                    Ville = "Plailly",
+                    ImagePath = "/images/asterix.jpg",
+                    Description = "Impossible n’est pas Gaulois : retrouvez toutes les offres pour faire de votre séjour au Parc un réel moment de partage et d’aventures… Sans pour autant dilapider tous vos sesterces!"
+                }
             );
             this.Utilisateurs.Add(
                 new Utilisateur { 

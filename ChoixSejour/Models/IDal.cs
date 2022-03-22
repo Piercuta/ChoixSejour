@@ -8,7 +8,7 @@ namespace ChoixSejour.Models
 	public interface IDal : IDisposable
 	{
 		void CreerSejour(string nom, string telephone, string ville, string description, int id = 0);
-		void ModifierSejour(int id, string nom, string telephone, string ville, string description);
+		void ModifierSejour(int id, string nom, string telephone, string ville, string description, string imagePath);
 		void SupprimerSejour(int id);
 		void SupprimerSejour(string nom, string telephone);
 		bool SejourExiste(string nom);

@@ -2,7 +2,7 @@
 @{
 	Layout = "~/Views/Shared/_LayoutChoixSejour.cshtml";
 }
-		<h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Sejours</h2>
+		<h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Séjours</h2>
 		<!-- Icon Divider-->
 		<div class="divider-custom">
 			<div class="divider-custom-line"></div>
@@ -14,19 +14,30 @@
 			{
 				string editlink = "/Sejour/Modifier/" + sejour.Id;
 				string deletelink = "/Sejour/Supprimer/" + sejour.Id;
-				<div class="card col-4 m-5" style="width: 18rem;">
-					<div class="card-body">
-						<h5 class="card-title">@sejour.Lieu</h5>
-						<h6 class="card-subtitle mb-2 text-muted">@sejour.Ville</h6>
-						<h6 class="card-subtitle mb-2 text-muted">@sejour.Telephone</h6>
-						<p class="card-text">@sejour.Description</p>
-						<a href=@editlink class="card-link">Modifier</a>
+				<div class="card col-6 m-5" style="width: 18rem;">
+					<div class="card-body d-flex flex-column justify-content-between">
+                        <div>
+                            <h5 class="card-title">@sejour.Lieu</h5>
+                            <div class="my-3">
+                                <img src="@sejour.ImagePath" width="200" height="200" />
+                            </div>
+                            
+                            <h6 class="card-subtitle mb-2 text-muted">@sejour.Ville</h6>
+                            <h6 class="card-subtitle mb-2 text-muted">@sejour.Telephone</h6>
+                            <p class="card-text">@sejour.Description</p>
 
-						@if (User.IsInRole(Role.Admin.ToString()))
-						{
-							<a href=@deletelink class="card-link">Supprimer</a>
-						}
+                        </div>
+			
+                        <div>
+                            <a href=@editlink class="card-link">Modifier</a>
 
+                            @if (User.IsInRole(Role.Admin.ToString()))
+                            {
+                                <a href=@deletelink class="card-link">Supprimer</a>
+                            }
+
+                        </div>
+						
 
 					</div>
 				</div>

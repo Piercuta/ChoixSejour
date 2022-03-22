@@ -58,7 +58,7 @@ namespace ChoixSejour.Models
 			}
 		}
 
-		public void ModifierSejour(int id, string nom, string telephone, string ville, string description)
+		public void ModifierSejour(int id, string nom, string telephone, string ville, string description, string imagePath)
 		{
 			Sejour sejourToUpdate = this._bddContext.Sejours.Find(id);
 			if (sejourToUpdate != null)
@@ -67,6 +67,7 @@ namespace ChoixSejour.Models
 				sejourToUpdate.Telephone = telephone;
 				sejourToUpdate.Ville = ville; 
 				sejourToUpdate.Description = description;
+				sejourToUpdate.ImagePath = imagePath;
 				this._bddContext.SaveChanges();
 			}
 		}
