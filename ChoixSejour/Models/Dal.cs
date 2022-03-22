@@ -37,8 +37,8 @@ namespace ChoixSejour.Models
 
 		public List<Sejour> ObtientTousLesSejours()
 		{
-			List<Sejour> listeRestaurants = this._bddContext.Sejours.ToList();
-			return listeRestaurants;
+			List<Sejour> listeSejours = this._bddContext.Sejours.ToList();
+			return listeSejours;
 		}
 
 		public void SupprimerSejour(int id)
@@ -74,7 +74,7 @@ namespace ChoixSejour.Models
 
 		// addeed for authentification
 
-		public Utilisateur AjouterUtilisateur(string prenom, string password, string role="Basic")
+		public Utilisateur AjouterUtilisateur(string prenom, string password, Role role=Role.ReadWrite)
 		{
 			string motDePasse = EncodeMD5(password);
 			Utilisateur user = new Utilisateur() { Prenom = prenom, Password = motDePasse, Role=role };
@@ -106,7 +106,7 @@ namespace ChoixSejour.Models
 			return null;
 		}
 
-		private string EncodeMD5(string motDePasse)
+		public static string EncodeMD5(string motDePasse)
 		{
 			string motDePasseSel = "ChoixSejour" + motDePasse + "ASP.NET MVC";
 			return BitConverter.ToString(new MD5CryptoServiceProvider().ComputeHash(ASCIIEncoding.Default.GetBytes(motDePasseSel)));
@@ -136,13 +136,13 @@ namespace ChoixSejour.Models
 
 		public List<Resultats> ObtenirLesResultats(int idSondage)
 		{
-			List<Sejour> restaurants = ObtientTousLesSejours();
+			List<Sejour> sejours = ObtientTousLesSejours();
 			List<Resultats> resultats = new List<Resultats>();
 			Sondage sondage = _bddContext.Sondages.First(s => s.Id == idSondage);
 			foreach (IGrouping<int, Vote> grouping in sondage.Votes.GroupBy(v => v.sejour.Id))
 			{
-				int idRestaurant = grouping.Key;
-				Sejour sejour = restaurants.First(r => r.Id == idRestaurant);
+				int idSejour = grouping.Key;
+				Sejour sejour = sejours.First(r => r.Id == idSejour);
 				int nombreDeVotes = grouping.Count();
 				resultats.Add(new Resultats { Nom = sejour.Lieu, Telephone = sejour.Telephone, NombreDeVotes = nombreDeVotes });
 			}

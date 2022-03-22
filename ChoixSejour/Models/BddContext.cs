@@ -96,8 +96,22 @@ namespace ChoixSejour.Models
                      Description = "bla bla bla"
                  }
             );
-            this.Utilisateurs.Add(new Utilisateur { Id = 1, Prenom = "Pierre", Password = "BC-C2-8A-15-B2-66-C8-3C-D4-E2-31-7D-17-16-58-A8", Role="Basic" });
-            this.Utilisateurs.Add(new Utilisateur { Id = 2, Prenom = "Louis", Password = "FB-32-9E-B0-0E-A1-D6-76-5D-D1-3B-8E-C0-26-3C-CB", Role = "Admin" });
+            this.Utilisateurs.Add(
+                new Utilisateur { 
+                    Id = 1,
+                    Prenom = "Pierre",
+                    Password =Dal.EncodeMD5("ppppp"),
+                    Role=Role.ReadWrite 
+                }
+            );
+            this.Utilisateurs.Add(
+                new Utilisateur {
+                    Id = 2,
+                    Prenom = "Louis",
+                    Password = Dal.EncodeMD5("lllll"),
+                    Role=Role.Admin
+                }
+            );
             this.Sondages.Add(new Sondage { Id = 1});
             this.SaveChanges();
         }

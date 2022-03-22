@@ -21,11 +21,11 @@ namespace ChoixSejour.Controllers
         }
         public ActionResult Index(int id)
         {
-            RestaurantVoteViewModel viewModel = new RestaurantVoteViewModel
+            SejourVoteViewModel viewModel = new SejourVoteViewModel
             {
-                ListeDesSejours = dal.ObtientTousLesSejours().Select(r => new RestaurantCheckBoxViewModel { Id = r.Id, NomEtTelephone = string.Format("{0} ({1})", r.Lieu, r.Telephone) }).ToList()
+                ListeDesSejours = dal.ObtientTousLesSejours().Select(r => new SejourCheckBoxViewModel { Id = r.Id, NomEtTelephone = string.Format("{0} ({1})", r.Lieu, r.Telephone) }).ToList()
             };
-            var userId = User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
             if (dal.ADejaVote(id, userId))
             {
                 return RedirectToAction("AfficheResultat", new { id = id });
@@ -34,7 +34,7 @@ namespace ChoixSejour.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(RestaurantVoteViewModel viewModel, int id)
+        public ActionResult Index(SejourVoteViewModel viewModel, int id)
         {
             if (!ModelState.IsValid)
                 return View(viewModel);
@@ -43,9 +43,9 @@ namespace ChoixSejour.Controllers
             Utilisateur utilisateur = dal.ObtenirUtilisateur(userId);
             if (utilisateur == null)
                 return new NotFoundResult();
-            foreach (RestaurantCheckBoxViewModel restaurantCheckBoxViewModel in viewModel.ListeDesSejours.Where(r => r.EstSelectionne))
+            foreach (SejourCheckBoxViewModel sejourCheckBoxViewModel in viewModel.ListeDesSejours.Where(r => r.EstSelectionne))
             {
-                dal.AjouterVote(id, restaurantCheckBoxViewModel.Id, utilisateur.Id);
+                dal.AjouterVote(id, sejourCheckBoxViewModel.Id, utilisateur.Id);
             }
             return RedirectToAction("AfficheResultat", new { id = id });
         }

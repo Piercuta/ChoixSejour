@@ -10,7 +10,7 @@ namespace ChoixSejour.Models
 	public class Sejour
 	{
 		public int Id { get; set; }
-		[Required(ErrorMessage = "Le nom du restaurant doit être rempli !")]
+		[Required(ErrorMessage = "Le nom du sejour doit être rempli !")]
 		[MaxLength(25)]
 		public string Lieu { get; set; }
 

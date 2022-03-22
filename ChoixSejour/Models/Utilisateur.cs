@@ -16,6 +16,13 @@ namespace ChoixSejour.Models
 		[Required]
 		[MaxLength(50)]
 		public string Password { get; set; }
-		public string Role { get; set; }
+		public Role Role { get; set; }
 	}
+
+	public enum Role
+    {
+		Admin,
+		ReadWrite,
+		ReadOnly
+    }
 }

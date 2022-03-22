@@ -20,8 +20,8 @@ namespace ChoixSejour.Controllers
 
         public ActionResult Index()
         {
-            List<Sejour> listeDesRestaurants = dal.ObtientTousLesSejours();
-            return View(listeDesRestaurants);
+            List<Sejour> listeDesSejours = dal.ObtientTousLesSejours();
+            return View(listeDesSejours);
         }
 
         public ActionResult Creer()
@@ -34,7 +34,7 @@ namespace ChoixSejour.Controllers
         {
             if (dal.SejourExiste(sejour.Lieu))
             {
-                ModelState.AddModelError("Nom", "Ce nom de restaurant existe déjà");
+                ModelState.AddModelError("Nom", "Ce nom de sejour existe déjà");
                 return View(sejour);
             }
             if (!ModelState.IsValid)
@@ -47,10 +47,10 @@ namespace ChoixSejour.Controllers
         {
             if (id.HasValue)
             {
-                Sejour restaurant = dal.ObtientTousLesSejours().FirstOrDefault(r => r.Id == id.Value);
-                if (restaurant == null)
+                Sejour sejour = dal.ObtientTousLesSejours().FirstOrDefault(r => r.Id == id.Value);
+                if (sejour == null)
                     return View("Error");
-                return View(restaurant);
+                return View(sejour);
             }
             else
                 return NotFound();

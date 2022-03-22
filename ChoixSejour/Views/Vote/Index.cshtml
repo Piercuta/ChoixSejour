@@ -1,4 +1,4 @@
-﻿@model ChoixSejour.ViewModels.RestaurantVoteViewModel
+﻿@model ChoixSejour.ViewModels.SejourVoteViewModel
 
 @{
     Layout = "~/Views/Shared/_LayoutChoixSejour.cshtml";
@@ -13,14 +13,14 @@
         </div>
         <div class="row justify-content-center">
             <div class="col-8">
-                <p>Cochez les restaurants où vous voulez bien aller. Attention, le vote est définitif !</p>
+                <p>Cochez les sejours où vous voulez bien aller. Attention, le vote est définitif !</p>
                 @Html.ValidationMessageFor(m => m.ListeDesSejours)
                 @using (Html.BeginForm())
                 {
                     for (int i = 0; i < Model.ListeDesSejours.Count; i++)
                     {
                         <div class="form-check m-3">
-                            @Html.CheckBoxFor(m => m.ListeDesSejours[i].EstSelectionne, new {@class="form-check-input", data_val = "true", data_val_verifListe = "Vous devez choisir au moins un restaurant" })
+                            @Html.CheckBoxFor(m => m.ListeDesSejours[i].EstSelectionne, new {@class="form-check-input", data_val = "true", data_val_verifListe = "Vous devez choisir au moins un sejour" })
                             @Html.LabelFor(m => m.ListeDesSejours[i].EstSelectionne, Model.ListeDesSejours[i].NomEtTelephone, new { @class = "form-check-label" })
                             @Html.HiddenFor(m => m.ListeDesSejours[i].Id)
                             @Html.HiddenFor(m => m.ListeDesSejours[i].NomEtTelephone)

@@ -15,7 +15,7 @@ namespace ChoixSejour.Models
 		List<Sejour> ObtientTousLesSejours();
 		// ajout fonctions à venir
 
-		Utilisateur AjouterUtilisateur(string nom, string password, string role="Basic");
+		Utilisateur AjouterUtilisateur(string nom, string password, Role role=Role.ReadWrite);
 		Utilisateur Authentifier(string nom, string password);
 		Utilisateur ObtenirUtilisateur(int id);
 		Utilisateur ObtenirUtilisateur(string idStr);
