@@ -48,7 +48,7 @@ Parameters:
   GitRepo:
     Type: String
     Description: ...
-    Default: ChoixSejourHtmlCss
+    Default: ChoixSejour
   GithubUser:
     Type: String
     Description: ...
