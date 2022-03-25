@@ -24,7 +24,7 @@ namespace ChoixSejour.Controllers
         {
             SejourVoteViewModel viewModel = new SejourVoteViewModel
             {
-                ListeDesSejours = dal.ObtientTousLesSejours().Select(r => new SejourCheckBoxViewModel { Id = r.Id, NomEtTelephone = string.Format("{0} ({1})", r.Lieu, r.Telephone) }).ToList()
+                ListeDesSejours = dal.ObtientTousLesSejours().Select(r => new SejourCheckBoxViewModel { Id = r.Id, LieuEtTelephone = string.Format("{0} ({1})", r.Lieu, r.Telephone) }).ToList()
             };
             var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
             if (dal.ADejaVote(id, userId))
