@@ -9,11 +9,11 @@ services:
             - mysqldb
         environment:
           - DB_HOST=mysqldb
-          - DB_PASSWORD=DB_PASSWORD
+          - DB_PASSWORD=${DB_PASSWORD}
     mysqldb:
       image: mysql:8.0     
       environment:
-        - MYSQL_ROOT_PASSWORD=DB_PASSWORD
+        - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
       volumes:
         - mysql:/var/lib/mysql
 
